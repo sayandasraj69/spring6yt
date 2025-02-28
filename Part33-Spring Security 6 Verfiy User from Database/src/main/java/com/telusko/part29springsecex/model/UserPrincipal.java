@@ -1,5 +1,6 @@
 package com.telusko.part29springsecex.model;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -8,11 +9,11 @@ import java.util.Collection;
 import java.util.Collections;
 
 public class UserPrincipal implements UserDetails {
+    @Autowired
+    private Student_Entity student_Entity;
 
-    private Users user;
-
-    public UserPrincipal(Users user) {
-        this.user = user;
+    public UserPrincipal(Student_Entity student_Entity) {
+        this.student_Entity = student_Entity;
     }
 
     @Override
@@ -22,12 +23,12 @@ public class UserPrincipal implements UserDetails {
 
     @Override
     public String getPassword() {
-        return user.getPassword();
+        return student_Entity.getPassword();
     }
 
     @Override
     public String getUsername() {
-        return user.getUsername();
+        return student_Entity.getUsername();
     }
 
     @Override
